@@ -57,14 +57,14 @@ def clean_data():
     # print(df.sexo.value_counts())
     # print(df.tipo_de_emprendimiento.value_counts())
     # print(df.idea_negocio.value_counts())
-    print(df.barrio.value_counts())
+    # print(df.barrio.value_counts())
     # print(df.estrato.value_counts())
     # print(df.comuna_ciudadano.value_counts())
     # print(df.fecha_de_beneficio.value_counts())
     # print(df.monto_del_credito.value_counts())
     # print(df.línea_credito.value_counts())
 
-    df.barrio.value_counts().reset_index().to_csv('df_idea.csv', index=False)
+    # df.barrio.value_counts().reset_index().to_csv('df_idea.csv', index=False)
     
     # print(df)
 
