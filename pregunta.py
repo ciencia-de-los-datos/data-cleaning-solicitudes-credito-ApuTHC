@@ -31,26 +31,26 @@ def clean_data():
     
     df = df.drop(["ind"], axis=1)
     
-    df = df.dropna()
-    
-    df = df.applymap(lambda x: x.lower().strip() if isinstance(x, str) else x)
-    
     df['fecha_de_beneficio'] = df['fecha_de_beneficio'].apply(normalizar_fecha)
     
-    df['línea_credito'] = df['línea_credito'].apply(lambda x: x.replace(".-",".0").replace("._",".").replace("-"," ").replace("_"," ").replace("0",""))
-    
-    df['idea_negocio'] = df['idea_negocio'].apply(lambda x: x.replace("._",".").replace("-"," ").replace("_"," ").replace("0","").replace(" y",""))
-    df['idea_negocio'] = df['idea_negocio'].apply(lambda x: x.strip())
-    df['barrio'] = df['barrio'].apply(lambda x: x.strip())
-    
-
-    df['barrio'] = df['barrio'].apply(lambda x: x.replace("-"," ").replace("_"," "))
-    df['barrio'] = df['barrio'].apply(lambda x: x.strip())
-    
-    df['monto_del_credito'] = df['monto_del_credito'].apply(lambda x: int(x.replace("$ ","").replace(",","").replace(".00","")))
-    
+    df = df.dropna()
     df = df.drop_duplicates()
     
+    # df = df.applymap(lambda x: x.lower().strip() if isinstance(x, str) else x)
+    
+    df['sexo'] = df['sexo'].apply(lambda x: x.lower().strip())
+    df['tipo_de_emprendimiento'] = df['tipo_de_emprendimiento'].apply(lambda x: x.lower())
+    df['idea_negocio'] = df['idea_negocio'].apply(lambda x: x.lower().replace("_"," ").replace("-"," ").strip())
+    # df['idea_negocio'] = df['idea_negocio'].apply(lambda x: x.strip())
+    df['barrio'] = df['barrio'].apply(lambda x: x.lower().replace("_","-").replace("-"," "))
+    # df['barrio'] = df['barrio'].apply(lambda x: x.strip())
+    
+    df['línea_credito'] = df['línea_credito'].apply(lambda x: x.lower().replace("-"," ").replace("_"," ").strip())
+    
+    df['monto_del_credito'] = df['monto_del_credito'].apply(lambda x: float(x.replace("$ ","").replace(",","").replace(" ","").strip()))
+    
+    df = df.drop_duplicates()
+    df = df.dropna()
     # df = df.loc[df['monto_del_credito'] >= 100000]
         
     # print(df)
